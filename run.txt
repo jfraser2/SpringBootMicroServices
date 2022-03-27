@@ -1,0 +1,68 @@
+java -Dfile.encoding=UTF-8 -Dspring.profiles.active=dev -jar target/SpringBootMicroServices-0.0.1-SNAPSHOT.jar
+
+// with remote debugging
+java -Dfile.encoding=UTF-8 -Dspring.profiles.active=dev -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar target/SpringBootMicroServices-0.0.1-SNAPSHOT.jar
+Example
+"C:\Program Files (x86)\Java\jdk1.8.0_201\bin\java" -Dfile.encoding=UTF-8 -Dspring.profiles.active=dev -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar target/SpringBootMicroServices-0.0.1-SNAPSHOT.jar
+
+// path to Java
+C:\Program Files (x86)\Java\jdk1.8.0_201\bin
+
+Example
+"C:\Program Files (x86)\Java\jdk1.8.0_201\bin\java" -Dfile.encoding=UTF-8 -Dspring.profiles.active=dev -jar target/SpringBootMicroServices-0.0.1-SNAPSHOT.jar
+
+// swagger - currently Cors is blocking Swagger
+// to fix that comment out the @Configuration Annotation
+// in the CorsConfig.java file
+http://localhost:8080/your-app-root/swagger-ui.html
+Example
+http://localhost:8080/rest/api/swagger-ui.html
+
+// swagger check
+http://localhost:8080/rest/api/v2/api-docs
+
+Spring Boot Tutorial Page
+https://jaxenter.com/spring-boot-tutorial-rest-services-and-microservices-135148.html
+
+
+Install Docker on Windows10
+https://runnable.com/docker/install-docker-on-windows-10
+
+file: InstallDocker.msi
+
+after install docker on windows run the docker CLI commands from the unix shell
+This will build a container Image and keep it on your disk
+
+docker build --rm=false -f Dockerfile.debug -t group-name/image-name .
+
+Example Number one
+docker build --rm=false -f Dockerfile -t starterProjects/MicroServicesDockerImage .
+
+
+#Example Number two - is two commands back to back
+docker build -t starterProject/MicroServicesDockerImage .
+
+docker image save -o MicroServicesDockerImage.tar starterProject/MicroServicesDockerImage
+
+Then you upload the tarball to the server, and execute:
+
+$ docker image import MicroServicesDockerImage.tar MicroServicesDockerImage
+
+
+The maven docker plugin might work if it could find
+The docker Daemon - program on unix is dockerd
+
+default port is 2375
+
+For the Junit to create a UTF-8 token
+Had to set the Windows Environment Variable: JAVA_TOOL_OPTIONS
+I gave it the value: -Dfile.encoding=UTF-8
+
+good JwtToken:
+eyAgImFsZyI6ICJIUzI1NiIsICAidHlwIjogIkpXVCJ9.eyAic3ViIjogIjEyMzQ1Njc4OTAiLCAibmFtZSI6ICJKb2huIERvZSIsICJpYXQiOiAxNTE2MjM5MDIyLCAicmVmSWQiOiA1LCAiZXhwIjogMTY5MjcwMjIwMX0.AyFw77-977-9Xu-_ve-_vXHvv73vv70fee-_ve-_ve-_ve-_vUXvv73vv71pdHRdYFkI77-9Te-_vWU
+
+Expired JwtToken:
+eyAgImFsZyI6ICJIUzI1NiIsICAidHlwIjogIkpXVCJ9.eyAic3ViIjogIjEyMzQ1Njc4OTAiLCAibmFtZSI6ICJKb2huIERvZSIsICJpYXQiOiAxNTE2MjM5MDIyLCAicmVmSWQiOiA2LCAiZXhwIjogMTQ5MjcwMjIwMX0.77-9Au-_vdGG77-977-977-9T--_vdqN77-9MAzvv73vv73vv713X--_ve-_vRwf77-9QmBOGAvvv70
+
+# AutoConfiguration exclude
+https://stackoverflow.com/questions/28158094/spring-boot-enableautoconfiguration-with-exclude-not-working
