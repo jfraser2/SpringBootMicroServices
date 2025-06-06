@@ -1,5 +1,0 @@
-base\junit\JunitBase.class
-functional\junit\RegistrationTests.class
-junit\test\suites\TestSuiteOne.class
-nonFunctional\junit\BuildJwtToken.class
-response\dto\ResponseData.class
