@@ -24,7 +24,6 @@ public class RegistrationTests
 		JwtToken aJwtToken = new JwtToken();
 		String aJwtTokenStr = aJwtToken.buildJwtToken(defaultTokenHeader, defaultTokenPayLoadFuture, defaultSecretKey);
 		
-		// /rest/api is from file application.properties
 		ResponseData response = postJsonRequest(defaultServerAndPort, 
 			"rest/api/Registration/register", registrationUser, aJwtTokenStr);
 		
@@ -45,7 +44,6 @@ public class RegistrationTests
 		JwtToken aJwtToken = new JwtToken();
 		String aJwtTokenStr = aJwtToken.buildJwtToken(defaultTokenHeader, defaultTokenPayLoadFuture, defaultSecretKey);
 		
-		// /rest/api is from file application.properties
 		ResponseData response = postJsonRequest(defaultServerAndPort, 
 			"rest/api/Registration/register", registrationUser, aJwtTokenStr);
 		

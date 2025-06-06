@@ -3,6 +3,7 @@ package springboot.configurations;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ValidationMode;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import springboot.configurations.server.ConfigServerReader;
 
@@ -37,9 +39,10 @@ public class PersistenceJpaConfig
 	    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    vendorAdapter.setShowSql(true);
 	    vendorAdapter.setGenerateDdl(true);
-	    vendorAdapter.setPrepareConnection(false);
-	    emfb.setJpaVendorAdapter(vendorAdapter);
+	    vendorAdapter.setPrepareConnection(true); // hibernate 5.1 or 5.2
 	    emfb.setJpaProperties(additionalProperties());
+	    emfb.setJpaVendorAdapter(vendorAdapter);
+	    emfb.setValidationMode(ValidationMode.NONE); // Needed for H2 to work in Docker
 	    emfb.setPersistenceUnitName("RegistrationMicroServicePU");
 	    
 	    return emfb;
