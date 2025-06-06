@@ -35,7 +35,7 @@ import springboot.services.interfaces.Registration;
 import springboot.services.interfaces.RequestValidation;
 
 @RestController
-@RequestMapping(path="/Registration")
+@RequestMapping(path="/rest/api/Registration")
 public class RegistrationController
 	extends ControllerBase
 {

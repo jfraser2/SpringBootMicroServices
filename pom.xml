@@ -15,7 +15,7 @@
  	<parent>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-parent</artifactId>
-    	<version>2.0.4.RELEASE</version>
+    	<version>2.1.18.RELEASE</version>
     	<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	
@@ -92,23 +92,35 @@
 		<dependency>
     		<groupId>org.hibernate.javax.persistence</groupId>
     		<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>    		
  		</dependency>
 		
 		<dependency>
     		<groupId>org.hibernate</groupId>
     		<artifactId>hibernate-core</artifactId>
- 		</dependency>		
+    		<version>5.2.17.Final</version>
+ 		</dependency>
+ 		
+<!-- Tomcat Connection Pool -->
 		<dependency>
 		    <groupId>org.apache.tomcat</groupId>
 		    <artifactId>tomcat-jdbc</artifactId>
 		    <version>9.0.10</version>
 		</dependency>
 		<dependency>
+    		<groupId>org.apache.tomcat</groupId>
+    		<artifactId>tomcat-juli</artifactId>
+    		<version>9.0.37</version>
+		</dependency>
+
+<!-- H2 in memory database -->
+		
+		<dependency>
     		<groupId>com.h2database</groupId>
     		<artifactId>h2</artifactId>
     		<scope>runtime</scope>
 		</dependency>
-
+		
 <!-- Needed for the Docker Plugin -->
 <!-- https://mvnrepository.com/artifact/com.spotify/docker-maven-plugin (plexus) -->
 <!-- Don't think this will work on windows -->
@@ -121,7 +133,7 @@
 	</dependencies>
 
 <!-- make the jar in eclipse 	right click Project, Run As: Maven Build -->
-<!-- goal needs to be set as package -->
+<!-- goal needs to be set as clean package -->
 	<build>
 		<plugins>
 			<plugin>
@@ -160,6 +172,15 @@
 		</plugins>
 		
 	</build>	
+	
+	<profiles>
+  		<profile>
+    		<id>dev</id>
+    		<activation>
+      			<activeByDefault>true</activeByDefault>
+    		</activation>
+		</profile>
+	</profiles>	
 
 </project>
 

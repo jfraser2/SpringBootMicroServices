@@ -16,6 +16,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+      - 9092:9092
     environment:
       - JVM_OPTS=-Xms4G -Xmx10G -Dspring.profiles.active=dev
 #    networks:

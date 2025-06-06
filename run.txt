@@ -13,13 +13,13 @@ Example
 
 // swagger - currently Cors is blocking Swagger
 // to fix that comment out the @Configuration Annotation
-// in the CorsConfig.java file
+// in the SwaggerCorsConfig.java file
 http://localhost:8080/your-app-root/swagger-ui.html
 Example
-http://localhost:8080/rest/api/swagger-ui.html
+http://localhost:8080/swagger-ui.html
 
 // swagger check
-http://localhost:8080/rest/api/v2/api-docs
+http://localhost:8080/v2/api-docs
 
 Spring Boot Tutorial Page
 https://jaxenter.com/spring-boot-tutorial-rest-services-and-microservices-135148.html
@@ -30,13 +30,14 @@ https://runnable.com/docker/install-docker-on-windows-10
 
 file: InstallDocker.msi
 
-after install docker on windows run the docker CLI commands from the unix shell
+after install docker on windows run the docker CLI commands from the windows shell
+in your project directory, Make sure DockerDesk top is running
 This will build a container Image and keep it on your disk
 
 docker build --rm=false -f Dockerfile.debug -t group-name/image-name .
 
 Example Number one
-docker build --rm=false -f Dockerfile -t starterProjects/MicroServicesDockerImage .
+docker build --rm=false -f Dockerfile -t starterprojects/microservicesdockerimage .
 
 
 #Example Number two - is two commands back to back
@@ -47,6 +48,10 @@ docker image save -o MicroServicesDockerImage.tar starterProject/MicroServicesDo
 Then you upload the tarball to the server, and execute:
 
 $ docker image import MicroServicesDockerImage.tar MicroServicesDockerImage
+
+
+Example Number 3 - will execute the docker-compose.yml
+$ docker compose up
 
 
 The maven docker plugin might work if it could find
@@ -66,3 +71,6 @@ eyAgImFsZyI6ICJIUzI1NiIsICAidHlwIjogIkpXVCJ9.eyAic3ViIjogIjEyMzQ1Njc4OTAiLCAibmF
 
 # AutoConfiguration exclude
 https://stackoverflow.com/questions/28158094/spring-boot-enableautoconfiguration-with-exclude-not-working
+
+#H2 Console
+http://localhost:8080/h2-console
