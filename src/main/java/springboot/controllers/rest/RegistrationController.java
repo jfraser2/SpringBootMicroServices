@@ -97,7 +97,7 @@ public class RegistrationController
 		userRegistrationEntity = null;
 		
 		// support CORS
-		HttpHeaders aResponseHeader = createResponseHeader();
+		HttpHeaders aResponseHeader = createResponseHeader(request);
 		
 		return new ResponseEntity<>(jsonString, aResponseHeader, HttpStatus.OK);
 	}
@@ -150,7 +150,7 @@ public class RegistrationController
 		theResponse = null;
 		
 		// support CORS
-		HttpHeaders aResponseHeader = createResponseHeader();
+		HttpHeaders aResponseHeader = createResponseHeader(request);
 		
 		return new ResponseEntity<>(jsonString, aResponseHeader, HttpStatus.OK);
 	}
