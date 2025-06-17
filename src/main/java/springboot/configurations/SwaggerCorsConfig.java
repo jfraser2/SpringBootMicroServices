@@ -51,7 +51,7 @@ public class SwaggerCorsConfig
     	// Support for CRUD
     	
         registry.addMapping("/rest/api/**")
-            .allowedOrigins("http://localhost:4200", "localhost:8080")
+            .allowedOrigins("http://localhost:4200", "http://localhost:8080")
             .allowedHeaders("Access-Control-Allow-Origin", "Origin", "Accept", "Content-Type", "Authorization")
             .allowedMethods("POST", "OPTIONS", "GET", "DELETE", "PUT", "PATCH")
  			.exposedHeaders("Content-Type", "Content-Range", "Access-Control-Allow-Origin")   // headers for the response does not support wildcards
@@ -74,7 +74,9 @@ public class SwaggerCorsConfig
         	.allowedOrigins("http://localhost:8080")
 //            .allowedOrigins("*")
             .allowedHeaders("Access-Control-Allow-Origin", "Origin", "Access-Control-Allow-Headers", "Accept", "Content-Type", "Vary")
-            .allowedMethods("GET", "POST");
+    		.allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS")
+        	.exposedHeaders("Content-Type", "Content-Range", "Access-Control-Allow-Origin")   // headers for the response does not support wildcards
+        	.allowCredentials(false);  
         
         // Add more mappings...
     }
