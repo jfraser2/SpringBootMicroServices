@@ -32,7 +32,7 @@ import springboot.errorHandling.helpers.ApiValidationError;
 import springboot.security.SecurityDefaultMethods;
 import springboot.security.SecurityValidation;
 import springboot.services.interfaces.Registration;
-import springboot.services.interfaces.RequestValidation;
+import springboot.services.validation.request.RequestValidationService;
 
 @RestController
 @RequestMapping(path="/rest/api/Registration")
@@ -46,12 +46,6 @@ public class RegistrationController
 	private SecurityValidation securityValidation;
 	
 	@Autowired
-	private RequestValidation<RegistrationInfo> registrationValidation;
-	
-	@Autowired
-	private RequestValidation<AdminUser> adminValidation;
-
-	@Autowired
 	@Qualifier("requestValidationErrorsContainer")
 	private ValidationErrorContainer requestValidationErrorsContainer;
 	
@@ -61,11 +55,12 @@ public class RegistrationController
 	
 	@AllowedUserRoles(values={SecurityDefaultMethods.ALLOW_ANY_USER})
 	@RequestMapping(method = {RequestMethod.POST},
-			path = "/register",
+			path = "/v1/register",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<Object> register(@RequestBody RegistrationInfo user, HttpServletRequest request)
+	public ResponseEntity<Object> register(@RequestBody RegistrationInfo user,
+		HttpServletRequest request, @Autowired RequestValidationService<RegistrationInfo> registrationValidation)
 		throws RequestValidationException, IllegalArgumentException, AccessDeniedException
 	{
 		
@@ -104,7 +99,7 @@ public class RegistrationController
 	
 	@AllowedUserRoles(values={SecurityDefaultMethods.ADMIN})
 	@RequestMapping(method = {RequestMethod.POST},
-			path = "/resetHashMap",
+			path = "/v1/resetHashMap",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
@@ -115,7 +110,8 @@ public class RegistrationController
             dataType = "string",
             paramType = "header"
 	)
-	public ResponseEntity<Object> resetHashMap(@RequestBody AdminUser user, HttpServletRequest request)
+	public ResponseEntity<Object> resetHashMap(@RequestBody AdminUser user,
+		HttpServletRequest request, @Autowired RequestValidationService<AdminUser> adminValidation)
 		throws RequestValidationException, IllegalArgumentException, AccessDeniedException
 	{
 		
